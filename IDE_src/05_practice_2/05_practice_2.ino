@@ -5,7 +5,7 @@ int ReverseToggle(int toggle){
 }
 
 void setup() {
-  pinMode(7, OUTPUT);
+  pinMode(PIN_LED, OUTPUT);
   Serial.begin(115200);
   while(!Serial){
     ;
