@@ -31,18 +31,14 @@ void setup() {
   while(!Serial){
     ;
   }
-  Serial.println("Start. d");
-  
+  Serial.println(fadeAmount);
   set_period(PERIOD);
+  set_duty(brightness);
   nextLoopTime = millis() + deltaTime;
-
-  //set_duty(100);
-  digitalWrite(PIN_LED, 0);
 }
 
 void loop() {
   if(nextLoopTime > millis()){
-    /*
     set_duty(brightness);
     brightness = brightness + fadeAmount;
     if(brightness <= 0){
@@ -55,7 +51,7 @@ void loop() {
       brightness = 100;
       fadeAmount = -fadeAmount;
     }
-    nextLoopTime = millis() + deltaTime;*/
+    nextLoopTime = millis() + deltaTime;
   }
-  //PWM();
+  PWM();
 }
