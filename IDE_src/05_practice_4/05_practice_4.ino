@@ -8,7 +8,7 @@ unsigned long nextLoopTime;
 
 int brightness = 0;
 int deltaTime = 30;
-int fadeAmount = (101 * deltaTime) / 500;
+float fadeAmount = (101 * deltaTime) / 500.0;
 
 void set_period(int period){
   _period = period;
@@ -20,9 +20,9 @@ void set_duty(int duty){
 
 void PWM(){
   digitalWrite(PIN_LED, 0);
-  delayMicroseconds(_period * (_duty / 100));
+  delayMicroseconds(_period * (_duty / 100.0));
   digitalWrite(PIN_LED, 1);
-  delayMicroseconds(_period * ((100 - _duty) / 100));
+  delayMicroseconds(_period * ((100 - _duty) / 100.0));
 }
 
 void setup() {
@@ -38,7 +38,7 @@ void setup() {
 }
 
 void loop() {
-  if(nextLoopTime > millis()){
+  if(nextLoopTime <= millis()){
     set_duty(brightness);
     brightness = brightness + fadeAmount;
     if(brightness <= 0){
