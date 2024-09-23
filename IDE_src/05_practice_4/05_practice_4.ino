@@ -26,7 +26,7 @@ void PWM(){
 }
 
 void setup() {
-  //pinMode(PIN_LED, OUTPUT);
+  pinMode(PIN_LED, OUTPUT);
   Serial.begin(115200);
   while(!Serial){
     ;
