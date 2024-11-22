@@ -9,6 +9,7 @@ void setup()
 void loop()
 {
   unsigned int filtered; // Voltage values from the IR sensor (0 ~ 1023)
+  float dist;
 
   while (Serial.available() == 0)
     ;
@@ -16,13 +17,20 @@ void loop()
   
   // Take a median value from multiple measurements
   filtered = ir_sensor_filtered(50, 0.5, 0); // Replace n with your desired value
-  Serial.print("FLT:"); Serial.println(filtered);
+  dist = volt_to_distance(filtered);
+  Serial.print("FILT:"); Serial.println(filtered);
+  Serial.print("DIST:"); Serial.println(dist);
   //while (1) ;
 }
 
 int compare(const void *a, const void *b) {
   return (*(unsigned int *)a - *(unsigned int *)b);
 }
+float volt_to_distance(int a_value)
+{
+  return (-3E-07 * a_value * a_value * a_value) + (0.0005 * a_value * a_value) - (0.3111 * a_value) + 70.557;
+}
+
 
 unsigned int ir_sensor_filtered(unsigned int n, float position, int verbose)
 {
