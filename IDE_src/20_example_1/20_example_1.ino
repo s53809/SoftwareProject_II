@@ -1,3 +1,4 @@
+#include <math.h>
 // Arduino pin assignment
 #define PIN_IR A0
 
@@ -9,7 +10,7 @@ void setup()
 void loop()
 {
   unsigned int filtered; // Voltage values from the IR sensor (0 ~ 1023)
-  float dist;
+  double dist;
 
   while (Serial.available() == 0)
     ;
@@ -26,10 +27,12 @@ void loop()
 int compare(const void *a, const void *b) {
   return (*(unsigned int *)a - *(unsigned int *)b);
 }
-float volt_to_distance(int a_value)
+float volt_to_distance(float a_value)
 {
-  return (-3E-07 * a_value * a_value * a_value) + (0.0005 * a_value * a_value) - (0.3111 * a_value) + 70.557;
-}
+  return -23.45 * log(a_value) + 149.6;
+} //y = -3E-07x3 + 0.0005x2 - 0.2846x + 66.68
+//y = 0.0001x2 - 0.1683x + 54.208
+//y = -23.45ln(x) + 149.6
 
 
 unsigned int ir_sensor_filtered(unsigned int n, float position, int verbose)

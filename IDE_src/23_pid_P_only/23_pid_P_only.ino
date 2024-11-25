@@ -6,8 +6,8 @@
 #define PIN_IR    A0
 
 // Event interval parameters
-#define _INTERVAL_DIST    20 // distance sensor interval (unit: ms)
-#define _INTERVAL_SERVO   20 // servo interval (unit: ms)
+#define _INTERVAL_DIST    10 // distance sensor interval (unit: ms)
+#define _INTERVAL_SERVO   10 // servo interval (unit: ms)
 #define _INTERVAL_SERIAL  20 // serial interval (unit: ms)
 
 // EMA filter configuration for the IR distance sensor
@@ -16,19 +16,18 @@
 
 // Servo adjustment - Set _DUTY_MAX, _NEU, _MIN with your own numbers
 #define _DUTY_MAX 2100 // 2000
-#define _DUTY_NEU 1550 // 1500
+#define _DUTY_NEU 1600 // 1500
 #define _DUTY_MIN 1000 // 1000
 
 #define _SERVO_ANGLE_DIFF  265   // Replace with |D - E| degree
 #define _SERVO_SPEED       800   // servo speed 
 
 // Target Distance
-#define _DIST_TARGET    15.5 // Center of the rail (unit: mm)
+#define _DIST_TARGET    17.5 // Center of the rail (unit: mm)
 
 // PID parameters
-#define _NEGATIVE_KP 10    // proportional gain
-#define _POSITIVE_KP 27
-//#define _KD 0.0   // derivative gain
+#define _NEGATIVE_KP 19    // proportional gain
+#define _POSITIVE_KP 19    //#define _KD 0.0   // derivative gain
 //#define _KI 0.0   // integral gain
 
 // global variables
@@ -153,7 +152,7 @@ void loop()
 
 float volt_to_distance(int a_value)
 {
-  return (-3E-07 * a_value * a_value * a_value) + (0.0005 * a_value * a_value) - (0.3111 * a_value) + 70.557;
+  return -23.45 * log(a_value) + 149.6;
 }
 
 int compare(const void *a, const void *b) {
