@@ -27,7 +27,7 @@
 
 // PID parameters
 #define _POS_KP 10   // proportional gain
-#define _NEG_KP 3   // proportional gain
+#define _NEG_KP 2  // proportional gain
 #define _KD 300  // derivative gain
 //#define _KI 0.0   // integral gain
 
