@@ -29,7 +29,7 @@ int compare(const void *a, const void *b) {
 }
 float volt_to_distance(float a_value)
 {
-  return -23.45 * log(a_value) + 149.6;
+  return -23.74 * log(a_value) + 151.4;
 } //y = -3E-07x3 + 0.0005x2 - 0.2846x + 66.68
 //y = 0.0001x2 - 0.1683x + 54.208
 //y = -23.45ln(x) + 149.6
