@@ -220,7 +220,7 @@ void loop() {
 
 float volt_to_distance(int a_value)
 {
-  return (-23.74 * log(a_value) + 151.4) * 10;
+  return (-23.45 * log(a_value) + 149.6) * 10;
 }
 
 int compare(const void *a, const void *b) {
